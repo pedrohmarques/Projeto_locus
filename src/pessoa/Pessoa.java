@@ -25,9 +25,9 @@ public abstract class Pessoa {
 //        return Pessoa;
 //    }
 
-    public abstract boolean cadastrar(String nome, String genero, int mes, int ano, int dia);
-    public abstract boolean deletar(int id);
-    public abstract boolean editar();
+        public abstract boolean cadastrar(String nome, String genero, int mes, int ano, int dia);
+        public abstract boolean deletar(int id);
+        public abstract boolean editar();
 
     public static int getId() {
         return id;
