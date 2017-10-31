@@ -17,6 +17,9 @@ public class Administrador {
         return true;
     }
 
+    public void admCadastro(){
+
+    }
     public boolean editarEvento(Object evento){
         boolean sucesso = true;
 
