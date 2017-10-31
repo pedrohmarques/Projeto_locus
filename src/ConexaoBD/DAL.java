@@ -13,12 +13,13 @@ public class DAL {
         Class.forName(driverName); // here is the ClassNotFoundException
 
         String serverName = "localhost";
-        String mydatabase = "suptodo";
+        String mydatabase = "mydb";
         String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 
         String username = "root";
-        String password = "azerty";
+        String password = "";
         Connection connection = DriverManager.getConnection(url, username, password);
+
     }
 }
 
