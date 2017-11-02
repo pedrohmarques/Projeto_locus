@@ -20,6 +20,7 @@ public class aplicacao {
             curso.cadastrar(aluno2,"14/04/1999", "14:00");
             aluno.setCurso("deu");
             curso.editar(aluno);
+
         }catch (ExcecaoAlunoJaCadastrado e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Cadastro",
                     JOptionPane.ERROR_MESSAGE);

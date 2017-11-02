@@ -82,4 +82,10 @@ public class Curso implements CRUD {
         }
         return editado;
     }
+
+    @Override
+    public void visualizar() {
+
+
+    }
 }
