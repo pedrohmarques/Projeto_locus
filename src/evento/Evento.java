@@ -1,7 +1,5 @@
 package evento;
 
-import sala.Sala;
-
 public class Evento {
     private String horarioEvento;
     private Sala sala;

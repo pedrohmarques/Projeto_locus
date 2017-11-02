@@ -1,4 +1,4 @@
-package sala;
+package evento;
 
 public class Sala {
     private String numSala;

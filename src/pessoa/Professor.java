@@ -6,26 +6,13 @@ public class Professor extends Pessoa{
     private Disciplina disciplina[];
 
     public Professor(){
+        super();
         disciplina = new Disciplina[100];
     }
 
     public Professor(int tamVetor){
+        super();
         disciplina = new Disciplina[tamVetor];
-    }
-
-    @Override
-    public boolean cadastrar(String nome, String genero, int mes, int ano, int dia) {
-        return false;
-    }
-
-    @Override
-    public boolean deletar(int id) {
-        return false;
-    }
-
-    @Override
-    public boolean editar() {
-        return false;
     }
 
     public void verificaDadoDisciplina(){

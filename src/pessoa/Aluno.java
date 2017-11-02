@@ -1,5 +1,6 @@
 package pessoa;
 
+import java.util.*;
 public class Aluno extends Pessoa{
     private String curso;
     private String turno;
@@ -8,7 +9,8 @@ public class Aluno extends Pessoa{
 
     public Aluno(){}
 
-    public Aluno(String curso, String turno, int periodo, String senha){
+    public Aluno(String curso, String turno, int periodo, String senha,String genero, String nome, String email){
+        super(nome,genero,email);
         setCurso(curso);
         setPeriodo(periodo);
         setTurno(turno);
@@ -28,21 +30,6 @@ public class Aluno extends Pessoa{
     public Object laboratorioDisponivel(){
         Pessoa p = null;
         return p;
-    }
-
-    @Override
-    public boolean cadastrar(String nome, String genero, int mes, int ano, int dia) {
-        return false;
-    }
-
-    @Override
-    public boolean deletar(int id) {
-        return false;
-    }
-
-    @Override
-    public boolean editar() {
-        return false;
     }
 
     public boolean ehAdministrador(){return false;}
@@ -77,5 +64,19 @@ public class Aluno extends Pessoa{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Aluno other = (Aluno) obj;
+        if (this.getEmail() != other.getEmail())
+            return false;
+        return true;
     }
 }

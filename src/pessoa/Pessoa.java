@@ -12,22 +12,11 @@ public abstract class Pessoa {
 
     public Pessoa(){}
 
-    public Pessoa(String nome, GregorianCalendar dataNascimento, String genero, String email) {
-        setDataNascimento(dataNascimento);
-        setEmail(email);
-        setGenero(genero);
+    public Pessoa(String nome, String genero, String email){
         setNome(nome);
-        id++;
+        setGenero(genero);
+        setEmail(email);
     }
-//
-//    public Object procurar(int id){
-//
-//        return Pessoa;
-//    }
-
-        public abstract boolean cadastrar(String nome, String genero, int mes, int ano, int dia);
-        public abstract boolean deletar(int id);
-        public abstract boolean editar();
 
     public static int getId() {
         return id;
