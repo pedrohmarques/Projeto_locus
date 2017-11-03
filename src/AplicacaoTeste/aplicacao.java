@@ -6,7 +6,8 @@ import pessoa.Aluno;
 
 import javax.swing.*;
 
-public class aplicacao {
+public class
+aplicacao {
     public static void main(String[] args) {
         Aluno aluno = new Aluno("Engenharia", "tarde",
                 5, "pedro","M","pedro","email");
