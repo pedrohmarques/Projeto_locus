@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Curso implements CRUD {
     private String nomeCurso;
-    List<Aluno> aluno = new ArrayList<>();
+    private List<Aluno> aluno = new ArrayList<>();
 
     public Curso() {
     }
@@ -84,8 +84,22 @@ public class Curso implements CRUD {
     }
 
     @Override
-    public void visualizar() {
-
-
+    public Object visualizar(String descricao) {
+        Object viewDados = null;
+        /*if(viewDados instanceof Aluno){
+            Iterator<Aluno> a = aluno.iterator();
+            while(a.hasNext()){
+                if(a.next().getEmail().equals(descricao)){
+                    ((Aluno) viewDados).setCurso(a.next().getCurso());
+                    ((Aluno) viewDados).setPeriodo(a.next().getPeriodo());
+                    ((Aluno) viewDados).setTurno(a.next().getTurno());
+                    ((Aluno) viewDados).setEmail(a.next().getEmail());
+                    ((Aluno) viewDados).setDataNascimento(a.next().getDataNascimento());
+                    ((Aluno) viewDados).setNome(a.next().getNome());
+                }
+            }
+        }
+*/
+        return viewDados;
     }
 }
