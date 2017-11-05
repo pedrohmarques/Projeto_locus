@@ -1,13 +1,13 @@
 package evento;
 
 public class Sala {
-    private String numSala;
+    private int numSala;
 
-    public void setNumSala(String numSala) {
+    public void setNumSala(int numSala) {
         this.numSala = numSala;
     }
 
-    public String getNumSala() {
+    public int getNumSala() {
         return numSala;
     }
 }

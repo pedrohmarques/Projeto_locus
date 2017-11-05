@@ -4,10 +4,16 @@ import java.util.GregorianCalendar;
 
 public class Evento extends Disciplina{
     private GregorianCalendar horarioEvento;
-    private Sala sala;
+    private Sala sala = new Sala();
     private String descricaoEvento;
 
     public Evento(){}
+
+    public Evento(String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento) {
+        super(nomeDisciplina, nomeProfessor);
+        setSala(sala);
+        this.descricaoEvento = descricaoEvento;
+    }
 
     public String dadosDeEvento(){
 
@@ -18,12 +24,12 @@ public class Evento extends Disciplina{
         this.descricaoEvento = descricaoEvento;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSala(int sala) {
+        this.sala.setNumSala(sala);
     }
 
-    public Sala getSala() {
-        return sala;
+    public int getSala() {
+        return sala.getNumSala();
     }
 
     public String getDescricaoEvento() {
