@@ -9,7 +9,10 @@ public class Administrador implements CRUD{
     private String email;
     private List<Evento> evento = new ArrayList<>();
 
-    public Administrador(){}
+    public Administrador(){
+        setEmail("testeservidor@gmail.com");
+        setSenha("locus123");
+    }
 
     public Administrador(String senha, String email){
         setEmail(email);
@@ -57,6 +60,7 @@ public class Administrador implements CRUD{
             ((Evento) evento).setHorarioEvento(pegaData(data,hora));
             if(this.evento.contains(evento)){throw new ExcecaoEventoJaCadastrado();}
             else {
+                ((Evento) evento).setIdEvento(this.evento.size()+1);
                 this.evento.add((Evento)evento);
                 cadastrado = true;
             }
@@ -66,17 +70,56 @@ public class Administrador implements CRUD{
     }
 
     @Override
-    public boolean deletar(String email) {
+    public boolean deletar(String id) {
+        boolean deletado = false;
+        for (int i = 0; i < evento.size(); i++) {
+            Evento deletar = evento.get(i);
+            if (deletar.getIdEvento() == Integer.parseInt(id)) {
+                evento.remove(deletar);
+                deletado = true;
+            }
+        }
+
         return false;
     }
 
     @Override
     public boolean editar(Object novosDados) {
-        return false;
+        boolean editado = false;
+        int index = -1;
+        if (novosDados instanceof Evento) {
+            for (int i = 0; i < evento.size(); i++) {
+                Evento alterar = evento.get(i);
+                int teste = alterar.getIdEvento();
+                if (alterar.getIdEvento() == ((Evento) novosDados).getIdEvento()) {
+                    index = evento.indexOf(alterar);
+                }
+            }
+            if (index > -1) {
+                evento.set(index,(Evento)novosDados);
+                editado = true;
+            }
+        }
+        return editado;
     }
 
     @Override
     public Object visualizar(String descricao) {
-        return null;
+       Evento viewDados = new Evento();
+        for (int i = 0; i < evento.size(); i++) {
+            Evento alterar = evento.get(i);
+            if(alterar.getIdEvento() == Integer.parseInt(descricao)){
+                viewDados.setSala(alterar.getSala());
+                viewDados.setHorarioEvento(alterar.getHorarioEvento());
+                viewDados.setDescricaoEvento(alterar.getDescricaoEvento());
+                viewDados.setNomeDisciplina(alterar.getNomeDisciplina());
+                viewDados.setNomeProfessor(alterar.getNomeProfessor());
+                viewDados.setIdEvento(alterar.getIdEvento());
+            }
+        }
+
+
+
+        return viewDados;
     }
 }

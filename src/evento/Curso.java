@@ -73,10 +73,16 @@ public class Curso implements CRUD {
     @Override
     public boolean editar(Object novosDados) {
         boolean editado = false;
+        int index = -1;
         if (novosDados instanceof Aluno) {
-            int index = aluno.indexOf((Aluno) novosDados);
+            for (int i = 0; i < aluno.size(); i++) {
+                Aluno alterar = aluno.get(i);
+                if (alterar.getEmail().equals(((Aluno) novosDados).getEmail())) {
+                    index = aluno.indexOf(alterar);
+                }
+            }
             if (index > -1) {
-                aluno.add(index, (Aluno) novosDados);
+                aluno.set(index,(Aluno)novosDados);
                 editado = true;
             }
         }
@@ -84,22 +90,22 @@ public class Curso implements CRUD {
     }
 
     @Override
-    public Object visualizar(String descricao) {
-        Object viewDados = null;
-        /*if(viewDados instanceof Aluno){
-            Iterator<Aluno> a = aluno.iterator();
-            while(a.hasNext()){
-                if(a.next().getEmail().equals(descricao)){
-                    ((Aluno) viewDados).setCurso(a.next().getCurso());
-                    ((Aluno) viewDados).setPeriodo(a.next().getPeriodo());
-                    ((Aluno) viewDados).setTurno(a.next().getTurno());
-                    ((Aluno) viewDados).setEmail(a.next().getEmail());
-                    ((Aluno) viewDados).setDataNascimento(a.next().getDataNascimento());
-                    ((Aluno) viewDados).setNome(a.next().getNome());
-                }
+    public Object visualizar(String email) {
+        Aluno viewDados = new Aluno();
+        for (int i = 0; i < aluno.size(); i++) {
+            Aluno alterar = aluno.get(i);
+            if(alterar.getEmail().equals(email)){
+                viewDados.setCurso(alterar.getCurso());
+                viewDados.setPeriodo(alterar.getPeriodo());
+                viewDados.setTurno(alterar.getTurno());
+                viewDados.setEmail(alterar.getEmail());
+                viewDados.setDataNascimento(alterar.getDataNascimento());
+                viewDados.setNome(alterar.getNome());
             }
         }
-*/
+
+
+
         return viewDados;
     }
 }
