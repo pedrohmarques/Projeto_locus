@@ -4,7 +4,6 @@ import java.util.GregorianCalendar;
 
 public abstract class Pessoa {
 
-    private static int id;
     private String nome;
     private GregorianCalendar dataNascimento;
     private String genero;
@@ -16,10 +15,6 @@ public abstract class Pessoa {
         setNome(nome);
         setGenero(genero);
         setEmail(email);
-    }
-
-    public static int getId() {
-        return id;
     }
 
     public String getNome() {
