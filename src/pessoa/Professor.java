@@ -1,26 +1,53 @@
 package pessoa;
 
+import estruturadedados.Fila;
 import evento.Disciplina;
+import evento.Evento;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Professor extends Pessoa{
-    private Disciplina disciplina[];
+    private List<Evento> evento = new ArrayList<>();
+    private Fila dadosProfessor;
 
     public Professor(){
-        super();
-        disciplina = new Disciplina[100];
+        dadosProfessor = new Fila();
     }
 
-    public Professor(int tamVetor){
-        super();
-        disciplina = new Disciplina[tamVetor];
+    public Object pegaDadosProfessor(List<Evento> lista, String nomeProfessor){
+        evento = lista;
+        for (int i = 0; i < evento.size(); i++) {
+            Evento pegaDados = evento.get(i);
+            if(pegaDados.getNomeProfessor().equals(nomeProfessor)){
+                try{
+                    dadosProfessor.enfileira(pegaDados);
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
+                            JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+        }
+        return dadosProfessor;
     }
 
-    public void verificaDadoDisciplina(){
-
-    }
-
-    public void pegaDisciplina(Disciplina disciplina){
-
+    public Object pegaDisciplina(List<Evento> lista, String nomeProfessor){
+        evento = lista;
+        for (int i = 0; i < evento.size(); i++) {
+            Evento pegaDados = evento.get(i);
+            if(pegaDados.getNomeProfessor().equals(nomeProfessor)){
+                try{
+                    dadosProfessor.enfileira(pegaDados.getNomeDisciplina());
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
+                            JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
+        }
+        return dadosProfessor;
     }
 
 

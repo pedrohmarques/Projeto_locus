@@ -17,7 +17,7 @@ aplicacao {
                 5, "pedro","M","pedro","email");
 //Evento
         Evento evento = new Evento("Modular","Hugo", 403, "Aula do hugao", "Engenharia" );
-        Evento evento2 = new Evento("Modular","JOAO", 403, "Aula do hugao","Engenharia" );
+        Evento evento2 = new Evento("Modelagem","Hugo", 403, "Aula do hugao","Engenharia" );
 
         Curso curso = new Curso();
         Administrador adm = new Administrador();
@@ -29,7 +29,6 @@ aplicacao {
 //            Exemplos de instancia...
 //            Aluno
             curso.cadastrar(aluno,"14/04/1999", "14:00");
-            aluno.setNome("Lucas");
             curso.editar(aluno);
             curso.visualizar("email");
 
@@ -37,7 +36,6 @@ aplicacao {
             adm.cadastrar(evento,"15/06/2017","07:00");
             adm.cadastrar(evento2,"15/06/2017","07:00");
             //adm.deletar(Integer.toString(2));
-            evento.setNomeProfessor("LUCAS");
             adm.editar(evento);
             adm.visualizar("Engenharia");
 
