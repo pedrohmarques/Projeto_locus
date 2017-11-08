@@ -16,7 +16,7 @@ public class Aluno extends Pessoa{
         setTurno(turno);
         setSenha(senha);
     }
-
+/*
     public String consultaAula(){
 
         return "fazer";
@@ -25,12 +25,7 @@ public class Aluno extends Pessoa{
     public Object consultarHorario(){
         Pessoa p = null;
         return p;
-    }
-
-    public Object laboratorioDisponivel(){
-        Pessoa p = null;
-        return p;
-    }
+    }*/
 
     public boolean ehAdministrador(){return false;}
 
