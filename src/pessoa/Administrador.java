@@ -1,7 +1,10 @@
 package pessoa;
 
 import Excecao.*;
+import estruturadedados.Fila;
 import evento.*;
+
+import javax.swing.*;
 import java.util.*;
 
 public class Administrador implements CRUD{
@@ -104,22 +107,20 @@ public class Administrador implements CRUD{
     }
 
     @Override
-    public Object visualizar(String descricao) {
-       Evento viewDados = new Evento();
+    public Object visualizar(String curso) {
+       Fila fila = new Fila();
         for (int i = 0; i < evento.size(); i++) {
             Evento alterar = evento.get(i);
-            if(alterar.getIdEvento() == Integer.parseInt(descricao)){
-                viewDados.setSala(alterar.getSala());
-                viewDados.setHorarioEvento(alterar.getHorarioEvento());
-                viewDados.setDescricaoEvento(alterar.getDescricaoEvento());
-                viewDados.setNomeDisciplina(alterar.getNomeDisciplina());
-                viewDados.setNomeProfessor(alterar.getNomeProfessor());
-                viewDados.setIdEvento(alterar.getIdEvento());
+            if(alterar.getNomeCurso().equals(curso)){
+                try{
+                    fila.enfileira(alterar);
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
+                            JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
             }
         }
-
-
-
-        return viewDados;
+        return fila;
     }
 }

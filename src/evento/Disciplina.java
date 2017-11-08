@@ -3,12 +3,22 @@ package evento;
 public class Disciplina {
     private String nomeDisciplina;
     private String nomeProfessor;
+    private String nomeCurso;
 
     public Disciplina(){}
 
-    public Disciplina(String nomeDisciplina, String nomeProfessor) {
+    public Disciplina(String nomeDisciplina, String nomeProfessor, String nomeCurso) {
         setNomeProfessor(nomeProfessor);
         setNomeDisciplina(nomeDisciplina);
+        setNomeCurso(nomeCurso);
+    }
+
+    public String getNomeCurso() {
+        return nomeCurso;
+    }
+
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
     }
 
     public String getNomeDisciplina() {

@@ -2,6 +2,7 @@ package AplicacaoTeste;
 
 import Excecao.ExcecaoAlunoJaCadastrado;
 import Excecao.ExcecaoEventoJaCadastrado;
+import estruturadedados.Fila;
 import evento.*;
 import pessoa.Administrador;
 import pessoa.Aluno;
@@ -15,11 +16,14 @@ aplicacao {
         Aluno aluno = new Aluno("Engenharia", "tarde",
                 5, "pedro","M","pedro","email");
 //Evento
-        Evento evento = new Evento("Modular","Hugo", 403, "Aula do hugao" );
-        Evento evento2 = new Evento("Modular","JOAO", 403, "Aula do hugao" );
+        Evento evento = new Evento("Modular","Hugo", 403, "Aula do hugao", "Engenharia" );
+        Evento evento2 = new Evento("Modular","JOAO", 403, "Aula do hugao","Engenharia" );
 
         Curso curso = new Curso();
         Administrador adm = new Administrador();
+
+        Fila fila = new Fila();
+
 
         try{
 //            Exemplos de instancia...
@@ -35,13 +39,17 @@ aplicacao {
             //adm.deletar(Integer.toString(2));
             evento.setNomeProfessor("LUCAS");
             adm.editar(evento);
-            adm.visualizar(Integer.toString(2));
+            adm.visualizar("Engenharia");
 
         }catch (ExcecaoAlunoJaCadastrado e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Cadastro",
                     JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }catch (ExcecaoEventoJaCadastrado e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Cadastro",
                     JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

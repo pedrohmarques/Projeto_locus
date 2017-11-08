@@ -10,8 +10,8 @@ public class Evento extends Disciplina{
 
     public Evento(){}
 
-    public Evento(String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento) {
-        super(nomeDisciplina, nomeProfessor);
+    public Evento(String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento, String curso) {
+        super(nomeDisciplina, nomeProfessor, curso);
         setSala(sala);
         this.descricaoEvento = descricaoEvento;
     }

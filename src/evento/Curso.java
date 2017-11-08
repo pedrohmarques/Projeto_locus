@@ -9,18 +9,9 @@ import java.util.*;
 
 
 public class Curso implements CRUD {
-    private String nomeCurso;
     private List<Aluno> aluno = new ArrayList<>();
 
     public Curso() {
-    }
-
-    public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;
-    }
-
-    public String getNomeCurso() {
-        return nomeCurso;
     }
 
     private GregorianCalendar pegaData(String data, String hora) {
