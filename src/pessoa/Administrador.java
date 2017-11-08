@@ -121,10 +121,6 @@ public class Administrador implements CRUD{
                 }
             }
         }
-//      Apenas teste
-        Professor prof = new Professor();
-        prof.pegaDisciplina(evento, "Hugo");
-//
         return fila;
     }
 }
