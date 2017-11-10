@@ -9,6 +9,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.awt.*;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
@@ -31,7 +34,7 @@ public class AdministradorTest {
         Administrador adm = new Administrador();
         Evento evento = new Evento("Modular","Hugo", 403, "Aula do hugao", "Engenharia" );
         Evento evento2 = new Evento("Modelagem","Hugo", 403, "Aula do hugao","Engenharia" );
-        assertEquals(true, adm.deletar(Integer.toString(2)));
+        assertEquals(true, adm.deletar(2));
     }
 
     @Test
@@ -46,8 +49,8 @@ public class AdministradorTest {
         Administrador adm = new Administrador();
         Evento evento = new Evento("Modular","Hugo", 403, "Aula do hugao", "Engenharia" );
         adm.cadastrar(evento);
-        // Fila fila = (Fila) adm.visualizar("Engenharia");
-       // assertEquals();
+        List<Evento> e = adm.visualizar("Engenharia");
+        assertEquals(1, e.size());
     }
 
     @Deployment

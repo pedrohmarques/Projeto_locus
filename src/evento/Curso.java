@@ -2,13 +2,12 @@ package evento;
 
 import Excecao.ExcecaoAlunoJaCadastrado;
 import pessoa.Aluno;
-import pessoa.CRUD;
 
 import java.util.GregorianCalendar;
 import java.util.*;
 
 
-public class Curso implements CRUD {
+public class Curso {
     private List<Aluno> aluno = new ArrayList<>();
 
     public Curso() {
@@ -30,7 +29,6 @@ public class Curso implements CRUD {
         return dataADD;
     }
 
-    @Override
     public boolean cadastrar(Object o, String data, String hora) throws ExcecaoAlunoJaCadastrado {
         boolean cadastrado = false;
 
@@ -47,7 +45,6 @@ public class Curso implements CRUD {
         return cadastrado;
     }
 
-    @Override
     public boolean deletar(String email) {
         boolean deletado = false;
 
@@ -61,7 +58,6 @@ public class Curso implements CRUD {
         return deletado;
     }
 
-    @Override
     public boolean editar(Object novosDados) {
         boolean editado = false;
         int index = -1;
@@ -80,7 +76,6 @@ public class Curso implements CRUD {
         return editado;
     }
 
-    @Override
     public Object visualizar(String email) {
         Aluno viewDados = new Aluno();
         for (int i = 0; i < aluno.size(); i++) {

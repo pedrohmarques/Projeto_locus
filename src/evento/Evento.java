@@ -12,7 +12,8 @@ public class Evento {
 
     public Evento(){}
 
-    public Evento(String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento, String curso) {
+    public Evento(LocalDateTime horarioAula, String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento, String curso) {
+        setHorarioEvento(horarioAula);
         setDisciplina(nomeDisciplina,nomeProfessor,curso);
         setSala(sala);
         this.descricaoEvento = descricaoEvento;
