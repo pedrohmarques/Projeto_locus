@@ -2,7 +2,8 @@ package evento;
 
 import java.util.GregorianCalendar;
 
-public class Evento extends Disciplina{
+public class Evento {
+    private Disciplina disciplina = new Disciplina();
     private int idEvento;
     private GregorianCalendar horarioEvento;
     private Sala sala = new Sala();
@@ -11,7 +12,7 @@ public class Evento extends Disciplina{
     public Evento(){}
 
     public Evento(String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento, String curso) {
-        super(nomeDisciplina, nomeProfessor, curso);
+        setDisciplina(nomeDisciplina,nomeProfessor,curso);
         setSala(sala);
         this.descricaoEvento = descricaoEvento;
     }
@@ -46,5 +47,15 @@ public class Evento extends Disciplina{
 
     public void setHorarioEvento(GregorianCalendar horarioEvento) {
         this.horarioEvento = horarioEvento;
+    }
+
+    public void setDisciplina(String nomeDisciplina, String nomeProfessor, String nomeCurso) {
+        this.disciplina.setNomeCurso(nomeCurso);
+        this.disciplina.setNomeDisciplina(nomeDisciplina);
+        this.disciplina.setNomeProfessor(nomeProfessor);
+    }
+
+    public Disciplina getDisciplina() {
+        return this.disciplina;
     }
 }

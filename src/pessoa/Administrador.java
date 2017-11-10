@@ -111,7 +111,7 @@ public class Administrador implements CRUD{
        Fila fila = new Fila();
         for (int i = 0; i < evento.size(); i++) {
             Evento alterar = evento.get(i);
-            if(alterar.getNomeCurso().equals(curso)){
+            if(alterar.getDisciplina().getNomeCurso().equals(curso)){
                 try{
                     fila.enfileira(alterar);
                 }catch (Exception e){

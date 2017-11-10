@@ -35,7 +35,8 @@ aplicacao {
 //            Evento:
             adm.cadastrar(evento,"15/06/2017","07:00");
             adm.cadastrar(evento2,"15/06/2017","07:00");
-            //adm.deletar(Integer.toString(2));
+            adm.deletar(Integer.toString(2));
+            evento.setSala(802);
             adm.editar(evento);
             adm.visualizar("Engenharia");
 

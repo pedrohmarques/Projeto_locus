@@ -20,7 +20,7 @@ public class Professor extends Pessoa{
         evento = lista;
         for (int i = 0; i < evento.size(); i++) {
             Evento pegaDados = evento.get(i);
-            if(pegaDados.getNomeProfessor().equals(nomeProfessor)){
+            if(pegaDados.getDisciplina().getNomeProfessor().equals(nomeProfessor)){
                 try{
                     dadosProfessor.enfileira(pegaDados);
                 }catch (Exception e){
@@ -37,9 +37,9 @@ public class Professor extends Pessoa{
         evento = lista;
         for (int i = 0; i < evento.size(); i++) {
             Evento pegaDados = evento.get(i);
-            if(pegaDados.getNomeProfessor().equals(nomeProfessor)){
+            if(pegaDados.getDisciplina().getNomeProfessor().equals(nomeProfessor)){
                 try{
-                    dadosProfessor.enfileira(pegaDados.getNomeDisciplina());
+                    dadosProfessor.enfileira(pegaDados.getDisciplina().getNomeProfessor());
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
                             JOptionPane.ERROR_MESSAGE);
