@@ -3,6 +3,7 @@ package evento;
 import Excecao.ExcecaoAlunoJaCadastrado;
 import pessoa.Aluno;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.*;
 
@@ -13,70 +14,43 @@ public class Curso {
     public Curso() {
     }
 
-    private GregorianCalendar pegaData(String data, String hora) {
-        GregorianCalendar dataADD = new GregorianCalendar();
-
-        String[] parteData = data.split("/");
-        int dia = Integer.parseInt(parteData[0]);
-        int mes = Integer.parseInt(parteData[1]);
-        int ano = Integer.parseInt(parteData[2]);
-
-        String[] parteHora = hora.split(":");
-        int hr = Integer.parseInt(parteHora[0]);
-        int min = Integer.parseInt(parteHora[1]);
-
-        dataADD.set(ano, mes, dia, hr, min);
-        return dataADD;
-    }
-
-    public boolean cadastrar(Object o, String data, String hora) throws ExcecaoAlunoJaCadastrado {
-        boolean cadastrado = false;
-
-        if (o instanceof Aluno) {
-            ((Aluno) o).setDataNascimento(pegaData(data, hora));
-            if (aluno.contains(o)) {
-                throw new ExcecaoAlunoJaCadastrado(((Aluno) o).getNome());
+    public boolean cadastrar(Aluno a) throws ExcecaoAlunoJaCadastrado {
+          if (aluno.contains(a)) {
+                throw new ExcecaoAlunoJaCadastrado(a.getNome());
             } else {
-                aluno.add((Aluno) o);
-                cadastrado = true;
+                a.setDataNascimento(LocalDateTime.now());
+                aluno.add(a);
+                return true;
             }
         }
 
-        return cadastrado;
-    }
-
     public boolean deletar(String email) {
-        boolean deletado = false;
-
         for (int i = 0; i < aluno.size(); i++) {
             Aluno deletar = aluno.get(i);
             if (deletar.getEmail().equals(email)) {
                 aluno.remove(deletar);
-                deletado = true;
+                return true;
             }
         }
-        return deletado;
+        return false;
     }
 
-    public boolean editar(Object novosDados) {
-        boolean editado = false;
+    public boolean editar(Aluno novosDados) {
         int index = -1;
-        if (novosDados instanceof Aluno) {
-            for (int i = 0; i < aluno.size(); i++) {
-                Aluno alterar = aluno.get(i);
-                if (alterar.getEmail().equals(((Aluno) novosDados).getEmail())) {
+        for (int i = 0; i < aluno.size(); i++) {
+            Aluno alterar = aluno.get(i);
+            if (alterar.getEmail().equals((novosDados.getEmail()))) {
                     index = aluno.indexOf(alterar);
                 }
             }
             if (index > -1) {
-                aluno.set(index,(Aluno)novosDados);
-                editado = true;
+                aluno.set(index,novosDados);
+                return true;
             }
-        }
-        return editado;
+        return false;
     }
 
-    public Object visualizar(String email) {
+    public Aluno visualizar(String email) {
         Aluno viewDados = new Aluno();
         for (int i = 0; i < aluno.size(); i++) {
             Aluno alterar = aluno.get(i);

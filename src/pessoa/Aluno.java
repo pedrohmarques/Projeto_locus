@@ -61,6 +61,8 @@ public class Aluno extends Pessoa{
         this.senha = senha;
     }
 
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

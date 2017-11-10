@@ -1,11 +1,12 @@
 package pessoa;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 
 public abstract class Pessoa {
 
     private String nome;
-    private GregorianCalendar dataNascimento;
+    private LocalDateTime dataNascimento;
     private String genero;
     private String email;
 
@@ -25,11 +26,11 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public GregorianCalendar getDataNascimento() {
+    public LocalDateTime getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(GregorianCalendar dataNascimento) {
+    public void setDataNascimento(LocalDateTime dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -24,7 +24,7 @@ aplicacao {
         try{
 //            Exemplos de instancia...
 //            Aluno
-            curso.cadastrar(aluno,"14/04/1999", "14:00");
+            curso.cadastrar(aluno);
             //curso.editar(aluno);
             //curso.visualizar("email");
 
