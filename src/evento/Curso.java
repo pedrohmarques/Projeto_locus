@@ -94,9 +94,6 @@ public class Curso implements CRUD {
                 viewDados.setNome(alterar.getNome());
             }
         }
-
-
-
-        return viewDados;
+       return viewDados;
     }
 }
