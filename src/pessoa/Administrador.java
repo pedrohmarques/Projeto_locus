@@ -7,7 +7,7 @@ import evento.*;
 import javax.swing.*;
 import java.util.*;
 
-public class Administrador implements CRUD{
+public class Administrador{
     private String senha;
     private String email;
     private List<Evento> evento = new ArrayList<>();
@@ -56,23 +56,15 @@ public class Administrador implements CRUD{
         return dataADD;
     }
 
-    @Override
-    public boolean cadastrar(Object evento, String data, String hora)throws ExcecaoEventoJaCadastrado {
-        boolean cadastrado = false;
-        if(evento instanceof Evento){
-            ((Evento) evento).setHorarioEvento(pegaData(data,hora));
-            if(this.evento.contains(evento)){throw new ExcecaoEventoJaCadastrado();}
+    public boolean cadastrar(Evento evento)throws ExcecaoEventoJaCadastrado {
+        if(this.evento.contains(evento)){throw new ExcecaoEventoJaCadastrado();}
             else {
-                ((Evento) evento).setIdEvento(this.evento.size()+1);
-                this.evento.add((Evento)evento);
-                cadastrado = true;
-            }
+            evento.setIdEvento(this.evento.size() + 1);
+            this.evento.add(evento);
+            return true;
         }
-
-        return cadastrado;
     }
 
-    @Override
     public boolean deletar(String id) {
         boolean deletado = false;
         for (int i = 0; i < evento.size(); i++) {
@@ -86,7 +78,6 @@ public class Administrador implements CRUD{
         return false;
     }
 
-    @Override
     public boolean editar(Object novosDados) {
         boolean editado = false;
         int index = -1;
@@ -106,7 +97,6 @@ public class Administrador implements CRUD{
         return editado;
     }
 
-    @Override
     public Object visualizar(String curso) {
        Fila fila = new Fila();
         for (int i = 0; i < evento.size(); i++) {

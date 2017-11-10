@@ -1,11 +1,12 @@
 package evento;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 
 public class Evento {
     private Disciplina disciplina = new Disciplina();
     private int idEvento;
-    private GregorianCalendar horarioEvento;
+    private LocalDateTime horarioEvento;
     private Sala sala = new Sala();
     private String descricaoEvento;
 
@@ -41,11 +42,11 @@ public class Evento {
         return descricaoEvento;
     }
 
-    public GregorianCalendar getHorarioEvento() {
+    public LocalDateTime getHorarioEvento() {
         return horarioEvento;
     }
 
-    public void setHorarioEvento(GregorianCalendar horarioEvento) {
+    public void setHorarioEvento(LocalDateTime horarioEvento) {
         this.horarioEvento = horarioEvento;
     }
 

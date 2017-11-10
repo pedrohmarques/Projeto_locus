@@ -19,10 +19,6 @@ public class AlunoTest {
         assertEquals(false, aluno.ehAdministrador());
     }
 
-    @Test
-    public void equals() throws Exception {
-    }
-
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

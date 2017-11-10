@@ -1,6 +1,7 @@
 package pessoa;
 
 import estruturadedados.Fila;
+import evento.Curso;
 import evento.Disciplina;
 import evento.Evento;
 
@@ -9,46 +10,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Professor extends Pessoa{
-    private List<Evento> evento = new ArrayList<>();
-    private Fila dadosProfessor;
+    private List<Evento> eventos = new ArrayList<>();
+    private Curso curso;
+    private List<Disciplina> disciplinas = new ArrayList<>();
 
-    public Professor(){
-        dadosProfessor = new Fila();
+    public List<Evento> getEvento() {
+        return eventos;
     }
 
-    public Object pegaDadosProfessor(List<Evento> lista, String nomeProfessor){
-        evento = lista;
-        for (int i = 0; i < evento.size(); i++) {
-            Evento pegaDados = evento.get(i);
-            if(pegaDados.getDisciplina().getNomeProfessor().equals(nomeProfessor)){
-                try{
-                    dadosProfessor.enfileira(pegaDados);
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
-                            JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
-            }
-        }
-        return dadosProfessor;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public Object pegaDisciplina(List<Evento> lista, String nomeProfessor){
-        evento = lista;
-        for (int i = 0; i < evento.size(); i++) {
-            Evento pegaDados = evento.get(i);
-            if(pegaDados.getDisciplina().getNomeProfessor().equals(nomeProfessor)){
-                try{
-                    dadosProfessor.enfileira(pegaDados.getDisciplina().getNomeProfessor());
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error: Fila Cheia",
-                            JOptionPane.ERROR_MESSAGE);
-                    e.printStackTrace();
-                }
-            }
-        }
-        return dadosProfessor;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public Professor(){ }
+
+    public void addEvento(Evento e){
+        eventos.add(e);
+    }
+
+    public void addDisciplina(Disciplina d){
+        disciplinas.add(d);
+    }
+
 
 
 }
