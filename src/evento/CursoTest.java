@@ -46,7 +46,7 @@ public class CursoTest {
                 5, "pedro","M","pedro","email");
         curso.cadastrar(aluno);
         Aluno a = curso.visualizar("email");
-        //assertEquals(, a);
+        assertEquals("Engenharia", a.getCurso());
     }
 
     @Deployment

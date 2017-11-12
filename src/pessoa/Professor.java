@@ -1,11 +1,8 @@
 package pessoa;
 
-import estruturadedados.Fila;
 import evento.Curso;
 import evento.Disciplina;
 import evento.Evento;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
