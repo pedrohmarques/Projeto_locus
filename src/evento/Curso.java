@@ -11,8 +11,7 @@ import java.util.*;
 public class Curso {
     private List<Aluno> aluno = new ArrayList<>();
 
-    public Curso() {
-    }
+    public Curso() {}
 
     public boolean cadastrar(Aluno a) throws ExcecaoAlunoJaCadastrado {
           if (aluno.contains(a)) {

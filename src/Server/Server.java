@@ -6,6 +6,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.URI;
 
+import evento.Curso;
 import org.simpleframework.http.Query;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -13,10 +14,13 @@ import org.simpleframework.http.core.Container;
 import org.simpleframework.http.core.ContainerSocketProcessor;
 import org.simpleframework.transport.connect.Connection;
 import org.simpleframework.transport.connect.SocketConnection;
+import pessoa.Administrador;
 
 
 public class Server implements Container {
+
     static Controller control = new Controller();
+
     public void handle(Request request, Response response) {
         try {
             Query query = request.getQuery();
@@ -38,19 +42,30 @@ public class Server implements Container {
                 operacao = "";
             }
 
-            /*switch (operacao){
-                case "mostrarCarrosNoEstacionamento":
-                    c.getListaDeEstacionamentos().get(0).mostrarCarrosNoEstacionamento(body);
+            switch (operacao){
+                case "cadastrarAluno":
+                    //control.cadastrarAluno();
                     break;
-                case "realizarLogin":
-                    c.validarUsuario(body,query.get("email"),query.get("senha"));
+                case "login":
+                    control.verificaPermisao(query.get("email"));
                     break;
-                case "mostrarHistorico":
-                    c.getListaDeEstacionamentos().get(0).getHistoricoDeAlugueis().mostrarHistorico(body);
-            }*/
+                case "deletarAluno":
+                    control.deletarAluno(query.get("email"));
+                    break;
+                case "editarAluno":
+                    //control.editarAluno();
+                    break;
+                case "cadastraEvento":
+                   // control.cadastraEvento();
+                    break;
+                case "deletarEvento":
+                    control.deletarEvento(query.get("id"));
+                    break;
+                case "editarEvento":
+                   // control.editarEvento();
+            }
 
-
-            body.close();
+         body.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,8 +77,8 @@ public class Server implements Container {
         // "Address already in use: bind error",
         // tente mudar a porta.
 
-        control = control.iniciarController();
-        int porta = 7100;
+
+        final int porta = 5000;
 
         // Configura uma conex�o soquete para o servidor HTTP.
         Container container = new Server();
@@ -71,13 +86,6 @@ public class Server implements Container {
         Connection conexao = new SocketConnection(servidor);
         SocketAddress endereco = new InetSocketAddress(porta);
         conexao.connect(endereco);
-
-
-        System.out.println("Tecle ENTER para interromper o servidor...");
-        System.in.read();
-
-        conexao.close();
-        servidor.stop();
 
         //Testa a conex�o abrindo o navegador padr�o.
         Desktop.getDesktop().browse(new URI("http://127.0.0.1:" + porta));

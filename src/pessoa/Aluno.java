@@ -27,8 +27,6 @@ public class Aluno extends Pessoa{
         return p;
     }*/
 
-    public boolean ehAdministrador(){return false;}
-
     public String getCurso() {
         return curso;
     }
