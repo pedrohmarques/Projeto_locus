@@ -61,7 +61,7 @@ public class Controller {
 
         if(verificaPermisao(email)){
             if(adm.getSenha().equals(senha)){
-                tipo = "administrado";
+                tipo = "administrador";
                 status = "OK";
             }
         }else{
