@@ -47,7 +47,7 @@ public class Server implements Container {
                     //control.cadastrarAluno();
                     break;
                 case "login":
-                    control.verificaPermisao(query.get("email"));
+                    control.realizandoCadastro(body,query.get("email"),query.get("senha"));
                     break;
                 case "deletarAluno":
                     control.deletarAluno(query.get("email"));

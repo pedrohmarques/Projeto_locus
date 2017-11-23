@@ -2,9 +2,12 @@ package Server;
 
 import Excecao.*;
 import evento.*;
+import org.json.JSONObject;
 import pessoa.*;
 
+import java.io.PrintStream;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class Controller {
@@ -43,12 +46,37 @@ public class Controller {
         this.curso.editar(aluno);
     }
 
-    public boolean verificaPermisao(String email){
+    private boolean verificaPermisao(String email){
         if(email.equals(adm.getEmail())){
             return adm.ehAdministrador();
         }else{
             return false;
         }
+    }
+
+    public void realizandoCadastro(PrintStream body, String email, String senha){
+        JSONObject json = new JSONObject();
+        String tipo = "";
+        String status = "Email ou senha incorretos";
+
+        if(verificaPermisao(email)){
+            if(adm.getSenha().equals(senha)){
+                tipo = "administrado";
+                status = "OK";
+            }
+        }else{
+            aluno = curso.visualizar(email);
+            if(aluno.getSenha().equals(senha)){
+                tipo = "aluno";
+                status = "OK";
+            }
+        }
+
+        json.put("status", status);
+        json.put("tipo", tipo);
+        json.put("operacao", "realizarLogin");
+
+        body.println(json);
     }
     public Controller iniciarController(){
         Controller control = new Controller();
