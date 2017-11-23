@@ -39,10 +39,29 @@ public class Administrador{
         return senha;
     }
 
+    private Evento verificaIdDisponivel(Evento evento){
+        boolean disponivel = false;
+        for (int i = 0; i < this.evento.size(); i++) {
+            Evento verificar = this.evento.get(i);
+            if(verificar.getIdEvento() == (i+1)){
+                disponivel = true;
+            }else{
+                disponivel = false;
+            }
+        }
+        if(disponivel){
+            evento.setIdEvento(this.evento.size() + 1);
+        }else{
+            evento.setIdEvento(this.evento.size());
+        }
+
+        return evento;
+    }
+
     public boolean cadastrar(Evento evento)throws ExcecaoEventoJaCadastrado {
         if(this.evento.contains(evento)){throw new ExcecaoEventoJaCadastrado();}
             else {
-            evento.setIdEvento(this.evento.size() + 1);
+            evento = verificaIdDisponivel(evento);
             this.evento.add(evento);
             return true;
         }
