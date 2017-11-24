@@ -10,6 +10,7 @@ import evento.Curso;
 import org.simpleframework.http.Query;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
+import org.simpleframework.http.Status;
 import org.simpleframework.http.core.Container;
 import org.simpleframework.http.core.ContainerSocketProcessor;
 import org.simpleframework.transport.connect.Connection;
@@ -32,9 +33,8 @@ public class Server implements Container {
             response.setValue("Server", "HelloWorld/1.0 (Simple 4.0)");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
-
-            response.setValue("Content-Type", "text/plain");
-            body.println("Ol�, voc� requisitou: "+request.getPath());
+            response.setStatus(Status.OK);
+            response.setValue("Data-Type", "text");
 
             String operacao = query.get("operacao");
 
@@ -44,22 +44,26 @@ public class Server implements Container {
 
             switch (operacao){
                 case "cadastrarAluno":
-                    //control.cadastrarAluno();
+                    control.cadastrarAluno(body, query.get("curso")
+                            , query.get("turno"), query.get("periodo"), query.get("senha"),
+                            query.get("genero"), query.get("nome"), query.get("email"));
                     break;
                 case "login":
                     control.realizandoCadastro(body,query.get("email"),query.get("senha"));
                     break;
                 case "deletarAluno":
-                    control.deletarAluno(query.get("email"));
+                    control.deletarAluno(body, query.get("email"));
                     break;
                 case "editarAluno":
                     //control.editarAluno();
                     break;
                 case "cadastraEvento":
-                   // control.cadastraEvento();
+                   control.cadastraEvento(body, query.get("data")
+                           , query.get("disciplina"), query.get("professor"), query.get("sala"),
+                           query.get("evento"), query.get("curso"));
                     break;
                 case "deletarEvento":
-                    control.deletarEvento(query.get("id"));
+                    control.deletarEvento(body, query.get("id"));
                     break;
                 case "editarEvento":
                    // control.editarEvento();
@@ -77,6 +81,7 @@ public class Server implements Container {
         // "Address already in use: bind error",
         // tente mudar a porta.
 
+        control.iniciarController();
 
         final int porta = 5000;
 

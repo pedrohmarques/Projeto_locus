@@ -13,12 +13,6 @@ import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class AlunoTest {
-    @Test
-    public void ehAdministrador() throws Exception {
-        Aluno aluno = new Aluno();
-        assertEquals(false, aluno.ehAdministrador());
-    }
-
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

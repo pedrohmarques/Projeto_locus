@@ -41,18 +41,24 @@ public class Administrador{
 
     private Evento verificaIdDisponivel(Evento evento){
         boolean disponivel = false;
-        for (int i = 0; i < this.evento.size(); i++) {
-            Evento verificar = this.evento.get(i);
-            if(verificar.getIdEvento() == (i+1)){
-                disponivel = true;
-            }else{
-                disponivel = false;
-            }
-        }
-        if(disponivel){
+
+        if(this.evento.size() == 0){
             evento.setIdEvento(this.evento.size() + 1);
-        }else{
-            evento.setIdEvento(this.evento.size());
+       }else {
+
+            for (int i = 0; i < this.evento.size(); i++) {
+                Evento verificar = this.evento.get(i);
+                if (verificar.getIdEvento() == (i + 1)) {
+                    disponivel = true;
+                } else {
+                    disponivel = false;
+                }
+            }
+            if (disponivel) {
+                evento.setIdEvento(this.evento.size() + 1);
+            } else {
+                evento.setIdEvento(this.evento.size());
+            }
         }
 
         return evento;
