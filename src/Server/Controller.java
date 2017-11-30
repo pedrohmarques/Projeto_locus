@@ -2,6 +2,7 @@ package Server;
 
 import Excecao.*;
 import evento.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import pessoa.*;
 
