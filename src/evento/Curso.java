@@ -58,6 +58,7 @@ public class Curso {
                 viewDados.setPeriodo(alterar.getPeriodo());
                 viewDados.setTurno(alterar.getTurno());
                 viewDados.setEmail(alterar.getEmail());
+                viewDados.setSenha(alterar.getSenha());
                 viewDados.setDataNascimento(alterar.getDataNascimento());
                 viewDados.setNome(alterar.getNome());
             }

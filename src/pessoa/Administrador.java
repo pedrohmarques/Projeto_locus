@@ -2,14 +2,18 @@ package pessoa;
 
 import Excecao.*;
 import evento.*;
-
+import org.json.*;
+import org.json.JSONObject;
 import javax.swing.*;
+import java.io.PrintStream;
 import java.util.*;
 
 public class Administrador{
     private String senha;
     private String email;
     private List<Evento> evento = new ArrayList<>();
+
+
 
     public Administrador(){
         setEmail("testeservidor@gmail.com");
@@ -38,6 +42,8 @@ public class Administrador{
     public String getSenha() {
         return senha;
     }
+
+    public List<Evento> getEvento() {return evento;}
 
     private Evento verificaIdDisponivel(Evento evento){
         boolean disponivel = false;
@@ -90,12 +96,12 @@ public class Administrador{
         for (int i = 0; i < evento.size(); i++) {
                 Evento alterar = evento.get(i);
                 int teste = alterar.getIdEvento();
-                if (alterar.getIdEvento() == (novosDados).getIdEvento()) {
+                if (alterar.getIdEvento() == novosDados.getIdEvento()) {
                     index = evento.indexOf(alterar);
                 }
             }
             if (index > -1) {
-                evento.set(index,(Evento)novosDados);
+                evento.set(index, novosDados);
                 return true;
             }
         return false;
@@ -110,5 +116,15 @@ public class Administrador{
             }
         }
         return evento;
+    }
+
+    public void mostrarEvento(PrintStream body){
+        JSONArray json = new JSONArray();
+
+        for (Evento e : evento){
+            json.put(e.toJSON());
+        }
+
+        body.println(json);
     }
 }

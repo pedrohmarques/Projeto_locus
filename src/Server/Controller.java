@@ -20,30 +20,18 @@ public class Controller {
     private Evento evento;
 
 
-    public void cadastraEvento(PrintStream body, String horarioAula, String nomeDisciplina, String nomeProfessor, String sala, String descricaoEvento, String curso) throws ExcecaoEventoJaCadastrado{
+    public void cadastraEvento(String horarioAula, String nomeDisciplina, String nomeProfessor, String sala, String descricaoEvento, String curso) throws ExcecaoEventoJaCadastrado{
 
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
-        LocalDate date = LocalDate.parse(horarioAula,formatter);
-        LocalDateTime horario = date.atStartOfDay();
-
-        JSONObject json = new JSONObject();
-        String tipo = "";
-        String status = "Campos Invalidos";
-
-
-        evento = new Evento(horario, nomeDisciplina, nomeProfessor, Integer.parseInt(sala), descricaoEvento,curso);
+        evento = new Evento(horarioAula, nomeDisciplina, nomeProfessor, Integer.parseInt(sala), descricaoEvento,curso);
         boolean cadastrado = adm.cadastrar(evento);
 
         if(cadastrado){
-            tipo = "cadastrado";
-            status = "OK";
+            System.out.println("Evento cadastrado!");
+        }else{
+            System.out.println("Ocorreu um error ao cadastrar o evento!");
         }
 
-        json.put("status", status);
-        json.put("tipo", tipo);
-        json.put("operacao", "cadastrarEvento");
 
-        body.println(json);
     }
 
     public void deletarEvento(PrintStream body, String id){
@@ -65,23 +53,34 @@ public class Controller {
         body.println(json);
     }
 
-    public void editarEvento(LocalDateTime horarioAula, String nomeDisciplina, String nomeProfessor, int sala, String descricaoEvento, String curso){
-        evento = new Evento(horarioAula, nomeDisciplina, nomeProfessor, sala, descricaoEvento,curso);
-        adm.editar(evento);
+    public void editarEvento(String id,String horarioAula, String nomeDisciplina, String nomeProfessor, String sala, String descricaoEvento, String curso){
+        evento = new Evento(horarioAula, nomeDisciplina, nomeProfessor, Integer.parseInt(sala), descricaoEvento,curso);
+        evento.setIdEvento(Integer.parseInt(id));
+       boolean editado = adm.editar(evento);
+
+       if(editado){
+           System.out.println("Evento editado com sucesso!");
+       }else{
+           System.out.println("Evento editado com sucesso!");
+       }
+
+
     }
 
     public void cadastrarAluno(PrintStream body, String curso, String turno, String periodo, String senha,String genero, String nome, String email) throws ExcecaoAlunoJaCadastrado {
+       aluno = new Aluno(curso, turno, Integer.parseInt(periodo), senha, genero, nome, email);
+        boolean cadastrado = this.curso.cadastrar(aluno);
+
         JSONObject json = new JSONObject();
         String tipo = "";
-        String status = "Campos Invalidos";
-
-
-        aluno = new Aluno(curso, turno, Integer.parseInt(periodo), senha, genero, nome, email);
-        boolean cadastrado = this.curso.cadastrar(aluno);
+        String status = "Aluno não cadastrado";
 
         if(cadastrado){
             tipo = "cadastrado";
             status = "OK";
+            System.out.println("Aluno Cadastrado com sucesso!");
+        }else{
+            System.out.println("Aluno não cadastrado!");
         }
 
         json.put("status", status);
@@ -111,8 +110,8 @@ public class Controller {
 
     }
 
-    public void editarAluno(String curso, String turno, int periodo, String senha,String genero, String nome, String email){
-        aluno = new Aluno(curso, turno, periodo, senha, genero, nome, email);
+    public void editarAluno(String curso, String turno, String periodo, String senha,String genero, String nome, String email){
+        aluno = new Aluno(curso, turno,Integer.parseInt(periodo), senha, genero, nome, email);
         this.curso.editar(aluno);
     }
 
@@ -148,12 +147,25 @@ public class Controller {
 
         body.println(json);
     }
+
+
+    public Evento mostrarEvento(){
+
+            List<Evento> ev = adm.getEvento();
+            for ( Evento evento : ev){
+                this.evento = evento;
+            }
+
+        evento.setAdm(adm);
+        return evento;
+    }
+
     public Controller iniciarController() throws ExcecaoAlunoJaCadastrado, ExcecaoEventoJaCadastrado {
         Controller control = new Controller();
         aluno = new Aluno("dsa", "dsa", 4, "dsa","dsa", "dsa", "dsa");
         curso.cadastrar(aluno);
 
-        evento = new Evento(LocalDateTime.now(), "dsa", "dsa", 4, "dsa", "dsa");
+        evento = new Evento("23:59", "ProgramacaoModular", "Hugo de Paula", 503, "Aula sobre POO com o Hugao me da 2 ponto ai", "Engenharia de Software");
         adm.cadastrar(evento);
         return control;
     }

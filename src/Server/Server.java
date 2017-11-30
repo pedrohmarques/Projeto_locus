@@ -7,6 +7,7 @@ import java.net.SocketAddress;
 import java.net.URI;
 
 import evento.Curso;
+import evento.Evento;
 import org.simpleframework.http.Query;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -58,7 +59,7 @@ public class Server implements Container {
                     //control.editarAluno();
                     break;
                 case "cadastraEvento":
-                   control.cadastraEvento(body, query.get("data")
+                  control.cadastraEvento(query.get("data")
                            , query.get("disciplina"), query.get("professor"), query.get("sala"),
                            query.get("evento"), query.get("curso"));
                     break;
@@ -66,7 +67,14 @@ public class Server implements Container {
                     control.deletarEvento(body, query.get("id"));
                     break;
                 case "editarEvento":
-                   // control.editarEvento();
+                    control.editarEvento(query.get("id"), query.get("hora"),query.get("disciplina"),
+                            query.get("professor"),query.get("sala"),query.get("descricao"),
+                            query.get("curso"));
+                    break;
+                case "mostrarEvento":
+                    Evento evento = control.mostrarEvento();
+                    evento.getAdm().mostrarEvento(body);
+                    break;
             }
 
          body.close();
